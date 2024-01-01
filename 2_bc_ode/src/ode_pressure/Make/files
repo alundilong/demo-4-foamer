@@ -1,4 +1,4 @@
 odePressureFvPatchScalarField.C
 myODE.C
 
-LIB = ./lib/libodePressureBC
+LIB = $(FOAM_USER_LIBBIN)/libodePressureBC

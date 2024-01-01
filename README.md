@@ -8,8 +8,11 @@ This project is designed for individuals utilizing OpenFOAM for their simulation
       + using overset/6dof
       + repulsive force starts acting when one ball is within a given distance from the other one
       + solver
-         + oversetPimpleDyMFoam
+         + overPimpleDyMFoam
          + tested on v2312
+      + how to run
+         + source clean.sh && overPimpleDyMFoam
+   + **Demo**: 
    ![Alt text](imgs/repulsive-ball.gif)
 
 
