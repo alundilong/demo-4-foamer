@@ -9,9 +9,10 @@ This project is designed for individuals utilizing OpenFOAM for their simulation
       + repulsive force starts acting when one ball is within a given distance from the other one
       + solver
          + overPimpleDyMFoam
-         + tested on v2312
+         + tested on **openfoamv2312**
       + how to run
-         + source clean.sh && overPimpleDyMFoam
+         + source clean.sh && overPimpleDyMFoam (be aware: it is developed on openfoamv2312)
+         + if encounter any problem, please create an issue
    + **Demo**: 
    ![Alt text](imgs/repulsive-ball.gif)
 
@@ -23,7 +24,10 @@ This project is designed for individuals utilizing OpenFOAM for their simulation
       + solved pressure is applied to the bc
       + solver
          + simpleFoam
-         + tested on openfoam11
+         + tested on **openfoam11**
+      + how to run
+         + blockMesh & simpleFoam (be aware: it is developed on openfoam11)
+         + if encounter any problem, please create an issue
    + **Demo**:
 ![Alt text](imgs/ode-pressure.gif)
 
