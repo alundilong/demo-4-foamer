@@ -1,0 +1,168 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2312                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _1d8f0d55f7-20231221 OPENFOAM=2312 version=v2312
+Arch   : "LSB;label=32;scalar=64"
+Exec   : overPimpleDyMFoam
+Date   : Dec 26 2023
+Time   : 18:04:25
+Host   : bd619228e1e1
+PID    : 7449
+I/O    : uncollated
+Case   : /usr/Download/workspace/cases/twodisks
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Overriding DebugSwitches according to controlDict
+    overset         0;
+
+    dynamicOversetFvMesh 0;
+
+    cellVolumeWeight 0;
+
+Create mesh for time = 0
+
+Selecting dynamicFvMesh dynamicOversetFvMesh
+Selecting motion solver: multiSolidBodyMotionSolver
+Applying motion to entire mesh
+Selecting solid-body motion function sixDoFDynamicMotion
+Selecting sixDoFSolver CrankNicolson
+Translational constraint tensor (1 -0 -0 -0 1 -0 -0 -0 0)
+Rotational constraint tensor (0 0 0 0 0 0 0 0 1)
+Applying solid body motion sixDoFDynamicMotion to 3360 points of cellZone movingZone1
+trackingInverseDistance : detected 3 mesh regions
+    zone:0 nCells:9800
+    zone:1 nCells:0
+    zone:2 nCells:1600
+
+PIMPLE: Operating solver in PISO mode
+
+Reading field p
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Creating cellMask field to block out hole cells
+
+Creating interpolatedCells field 
+
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type laminar
+Selecting laminar stress model Stokes
+Reading/calculating face velocity Uf
+
+No MRF models present
+
+No finite volume options present
+Courant Number mean: 0 max: 0
+
+Starting time loop
+
+Courant Number mean: 0 max: 0
+Time = 0.001
+
+forces forces:
+    rho: rhoInf
+    Freestream density (rhoInf) set to 1
+    Not including porosity effects
+
+g = g [0 1 -2 0 0 0 0] (0 0 0)
+Time = 0.001------------------> disp:  (0.001 0.001 0)
+Overset analysis : nCells : 11400
+    calculated   : 11225
+    interpolated : 109 (interpolated from local:109  mixed local/remote:0  remote:0  special:0)
+    hole         : 66
+
+PIMPLE: iteration 1
+DILUPBiCGStab:  Solving for p, Initial residual = 1, Final residual = 5.965164834e-07, No Iterations 283
+DILUPBiCGStab:  Solving for p, Initial residual = 5.88761648e-08, Final residual = 5.88761648e-08, No Iterations 0
+time step continuity errors : sum local = 9.369720215e-08, global = -9.366949728e-08, cumulative = -9.366949728e-08
+DILUPBiCGStab:  Solving for p, Initial residual = 0.06754653143, Final residual = 5.803456362e-07, No Iterations 188
+DILUPBiCGStab:  Solving for p, Initial residual = 2.345914419e-07, Final residual = 2.345914419e-07, No Iterations 0
+time step continuity errors : sum local = 8.647819159e-07, global = 8.643985255e-07, cumulative = 7.707290282e-07
+ExecutionTime = 0.46 s  ClockTime = 1 s
+
+Courant Number mean: 0.003216690431 max: 0.3541997446
+Time = 0.002
+
+forces forces:
+    rho: rhoInf
+    Freestream density (rhoInf) set to 1
+    Not including porosity effects
+
+g = g [0 1 -2 0 0 0 0] (0 0 0)
+Time = 0.002------------------> disp:  (-0.002139271944 -0.002077242904 0)
+Overset analysis : nCells : 11400
+    calculated   : 11225
+    interpolated : 109 (interpolated from local:109  mixed local/remote:0  remote:0  special:0)
+    hole         : 66
+
+PIMPLE: iteration 1
+DILUPBiCGStab:  Solving for p, Initial residual = 0.1869417428, Final residual = 7.25424774e-07, No Iterations 155
+DILUPBiCGStab:  Solving for p, Initial residual = 5.283382245e-07, Final residual = 5.283382245e-07, No Iterations 0
+time step continuity errors : sum local = 5.263081133e-06, global = 5.261345036e-06, cumulative = 6.032074064e-06
+DILUPBiCGStab:  Solving for p, Initial residual = 0.2169812049, Final residual = 5.663915454e-07, No Iterations 136
+DILUPBiCGStab:  Solving for p, Initial residual = 2.327505592e-08, Final residual = 2.327505592e-08, No Iterations 0
+time step continuity errors : sum local = 7.506030635e-05, global = 7.505830689e-05, cumulative = 8.109038095e-05
+ExecutionTime = 0.74 s  ClockTime = 1 s
+
+Courant Number mean: 0.02017185808 max: 0.8741453217
+Time = 0.003
+
+forces forces:
+    rho: rhoInf
+    Freestream density (rhoInf) set to 1
+    Not including porosity effects
+
+g = g [0 1 -2 0 0 0 0] (0 0 0)
+Time = 0.003------------------> disp:  (-0.006312013556 -0.005540442093 0)
+Overset analysis : nCells : 11400
+    calculated   : 11223
+    interpolated : 109 (interpolated from local:109  mixed local/remote:0  remote:0  special:0)
+    hole         : 68
+
+PIMPLE: iteration 1
+DILUPBiCGStab:  Solving for p, Initial residual = 0.01259024426, Final residual = 6.943437348e-07, No Iterations 118
+DILUPBiCGStab:  Solving for p, Initial residual = 1.760155202e-06, Final residual = 7.27052396e-07, No Iterations 45
+time step continuity errors : sum local = 6.678467315e-05, global = 6.676921337e-05, cumulative = 0.0001478595943
+DILUPBiCGStab:  Solving for p, Initial residual = 0.02274093308, Final residual = 4.830777466e-07, No Iterations 116
+DILUPBiCGStab:  Solving for p, Initial residual = 2.420596498e-07, Final residual = 2.420596498e-07, No Iterations 0
+time step continuity errors : sum local = 1.504914974e-07, global = -1.322878407e-07, cumulative = 0.0001477273065
+ExecutionTime = 0.99 s  ClockTime = 2 s
+
+Courant Number mean: 0.01105150256 max: 1.341274279
+Time = 0.004
+
+forces forces:
+    rho: rhoInf
+    Freestream density (rhoInf) set to 1
+    Not including porosity effects
+
+g = g [0 1 -2 0 0 0 0] (0 0 0)
+Time = 0.004------------------> disp:  (0.01119015369 0.01001027327 0)
+Overset analysis : nCells : 11400
+    calculated   : 11221
+    interpolated : 110 (interpolated from local:110  mixed local/remote:0  remote:0  special:0)
+    hole         : 69
+
+PIMPLE: iteration 1
+DILUPBiCGStab:  Solving for p, Initial residual = 0.05708919593, Final residual = 9.912631491e-07, No Iterations 130
+DILUPBiCGStab:  Solving for p, Initial residual = 2.044479622e-07, Final residual = 2.044479622e-07, No Iterations 0
+time step continuity errors : sum local = 0.000220821036, global = 0.0002208210149, cumulative = 0.0003685483213
+DILUPBiCGStab:  Solving for p, Initial residual = 0.07840280275, Final residual = 9.672049456e-07, No Iterations 120
+DILUPBiCGStab:  Solving for p, Initial residual = 8.100579998e-08, Final residual = 8.100579998e-08, No Iterations 0
+time step continuity errors : sum local = 0.003375126935, global = -0.00337509784, cumulative = -0.003006549518
+ExecutionTime = 1.22 s  ClockTime = 2 s
+
+End
+

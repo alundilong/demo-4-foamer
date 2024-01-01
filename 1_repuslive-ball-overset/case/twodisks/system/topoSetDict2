@@ -1,0 +1,126 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale   1;
+
+radius #eval{(0.2*$scale)};
+xlength #eval{(8*$scale)};
+ylength #eval{(4*$scale)};
+zlength #eval{(0.2*$scale)};
+scalex 0.35;
+scaley 0.35;
+centerLx #eval{ (-$scalex*$xlength) };
+centerLy #eval{ -$scaley*$ylength };
+centerLz #eval{ -0.5*$zlength };
+
+centerRx #eval{ ($scalex*$xlength) };
+centerRy #eval{ -$scaley*$ylength };
+centerRz #eval{ -0.5*$zlength };
+
+actions
+(
+    {
+        name    c0;
+        type    cellSet;
+        action  new;
+        source  regionsToCell;
+        insidePoints
+        (
+            (0.0 0.0 0.0)
+        );
+    }
+
+    {
+        name    c1;
+        type    cellSet;
+        action  new;
+        source  cellToCell;
+        set     c0;
+    }
+
+    {
+        name    c1;
+        type    cellSet;
+        action  invert;
+    }
+
+    {
+        name    c2;
+        type    cellSet;
+        action  new;
+        source  regionsToCell;
+        set     c1;
+        insidePoints
+        (
+            ($centerLx $centerLy $centerLz)
+        );
+    }
+
+    {
+        name    c1;
+        type    cellSet;
+        action  subtract;
+        source  cellToCell;
+        set     c2;
+    }
+
+    // Select disk1 to remove from region 1 and 2
+
+    {
+        name    disk1;
+        type    cellSet;
+        action  new;
+        source  cellToCell;
+        set     c1;
+    }
+
+    {
+        name    disk1;
+        type    cellSet;
+        action  add;
+        source  cellToCell;
+        set     c2;
+    }
+
+    {
+        name    disk1;
+        type    cellSet;
+        action  subset;
+        source  cylinderToCell;
+        radius  $radius;
+        point1  ($centerRx $centerRy $centerRz);
+        point2  ($centerRx $centerRy -$centerRz);
+    }
+
+    //{
+    //    name    disk1;
+    //    type    cellSet;
+    //    action  add;
+    //    source  cylinderToCell;
+    //    radius  $radius;
+    //    point1  ($centerRx $centerRy $centerRz);
+    //    point2  ($centerRx $centerRy -$centerRz);
+    //}
+
+    {
+        name    disk1;
+        type    cellSet;
+        action  invert;
+    }
+);
+
+
+// ************************************************************************* //
