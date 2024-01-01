@@ -1,0 +1,6 @@
+SOURCE = \
+sixDoFDynamicMotion.C \
+condSixDoFDynamicMotion.C \
+twoCondSixDoFDynamicMotionSolver.C \
+
+# sources
