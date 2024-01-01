@@ -16,7 +16,7 @@ FoamFile
 
 libs
 (
-    "/home/worker/workspace/demo/1_bc_ode/src/ode_pressure/lib/libodePressureBC.so"
+    "libodePressureBC.so"
 );
 
 application     incompressibleFluid;
