@@ -1,5 +1,0 @@
-sixDoFDynamicMotion.C
-condSixDoFDynamicMotion.C
-twoCondSixDoFDynamicMotionSolver.C
-
-LIB = $(FOAM_USER_LIBBIN)/libsixDoFDynamicMotion
