@@ -30,7 +30,7 @@ This project is designed for individuals utilizing OpenFOAM for their simulation
 
 If you find this project useful and would like to support its development, consider making a donation. Your contributions will help cover costs such as hosting, software licenses, and development time, ensuring that the project can continue to grow and improve.
 
-You can donate via [PayPal](https://www.paypal.com/). Every contribution, however small, is greatly appreciated!
+You can donate via [PayPal](https://www.paypal.com/donate/?business=JDSPPXPK5FHUJ&no_recurring=0&currency_code=USD). Every contribution, however small, is greatly appreciated!
 
 Thank you for your support!
       
