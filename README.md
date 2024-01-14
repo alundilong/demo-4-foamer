@@ -34,7 +34,7 @@ This project is designed for individuals utilizing OpenFOAM for their simulation
 + **3_rts**
    + cd 3_rts && mkdir build && cd build && cmake .. && make
    + ./rts1
-   + by carefully reading through how this code work will dramatically help you understand how runtimeselectiontable-mechanism work in OpenFOAM
+   + Carefully reading this code will dramatically help you deepnin your understanding on how runtimeselectiontable-mechanism work in OpenFOAM
 
 
 ## 2 Support the Project

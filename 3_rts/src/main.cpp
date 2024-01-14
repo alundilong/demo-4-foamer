@@ -1,6 +1,5 @@
 #include "TopA.h"
 // #include <unordered_map>
-#include "TypeDef.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,17 +16,6 @@ int main(int argc, char *argv[])
 		std::cout << i.first << " " << i.second << std::endl;
     }
 	lut.clear();
-
-	// object manager
-
-	const TopA* p = childA.release();
-	EsTopAObjectManager es_obj_manager(std::string("ChildA"),&p);
-
-	es_obj_manager.toc();
-
-	// const TopA* p2 = (*(es_obj_manager.get(p->objName())));
-	std::cout << p->objName() << " " << p << std::endl;
-	// std::cout << p2->objName() << " " << p2 << std::endl;
 
     return 0;
 }
