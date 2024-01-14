@@ -5,3 +5,9 @@
 2_bc_ode/src/ode_pressure/Make/linux64GccDPInt32Debug
 2_bc_ode/src/ode_pressure/Make/linux64GccDPInt32Opt
 2_bc_ode/src/ode_pressure/lnInclude
+
+3_rts/build/
+3_rts/include/CMakeFiles/
+3_rts/include/cmake_install.cmake
+3_rts/src/cmake_install.cmake
+3_rts/src/rts1
