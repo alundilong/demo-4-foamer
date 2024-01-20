@@ -86,7 +86,7 @@ protected:
         scalarField pOld_;
 
 	//- timeIndex
-	label timeIndex_;
+	    label timeIndex_;
 
         // ODE to be solved
         const MyODE ode_;
@@ -95,7 +95,7 @@ protected:
         autoPtr<ODESolver> odeSolver_;
 
 	// Call solveODE
-	Foam::scalar solveODE(const scalar & p0, const scalar & t0, const scalar & dt);
+	    Foam::scalar solveODE(const scalar & p0, const scalar & t0, const scalar & dt);
 
 public:
 
