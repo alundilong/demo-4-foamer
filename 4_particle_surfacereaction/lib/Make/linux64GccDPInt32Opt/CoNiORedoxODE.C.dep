@@ -1,6 +1,6 @@
-$(OBJECTS_DIR)/ReactionODE.C.dep: \
-ReactionODE.C \
-ReactionODE.H \
+$(OBJECTS_DIR)/CoNiORedoxODE.C.dep: \
+CoNiORedoxODE.C \
+CoNiORedoxODE.H \
 $(WM_PROJECT_DIR)/src/ODE/lnInclude/ODESystem.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/scalarField.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/Field.H \

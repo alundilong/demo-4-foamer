@@ -59,7 +59,7 @@ Description
 #define CoNiORedoxDiffusionLimitedRate_H
 
 #include "SurfaceReactionModel.H"
-#include "ReactionODE.H"
+#include "CoNiORedoxODE.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -85,13 +85,13 @@ class CoNiORedoxDiffusionLimitedRate
     // Private data
         
             //- Oxidation ODE to be solved
-            const ReactionODE odeOxi_;
+            const CoNiORedoxODE odeOxi_;
 
             //- Oxidation ODE solver
             autoPtr<ODESolver> odeSolverOxi_;
 
             //- Reduction ODE to be solved
-            const ReactionODE odeRed_;
+            const CoNiORedoxODE odeRed_;
 
             //- Reduction ODE solver
             autoPtr<ODESolver> odeSolverRed_;

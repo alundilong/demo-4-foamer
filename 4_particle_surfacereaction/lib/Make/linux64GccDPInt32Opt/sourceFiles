@@ -1,5 +1,7 @@
 SOURCE = \
-ReactionODE.C \
+CoNiORedoxODE.C \
 makeTestCoalParcelSubmodels.C \
+CoNiO/CoNiO.C \
+CoNiO/Co3NiO4.C \
 
 # sources

@@ -11,3 +11,5 @@
 3_rts/include/cmake_install.cmake
 3_rts/src/cmake_install.cmake
 3_rts/src/rts1
+
+4_particle_surfacereaction/solver/testReactingParcelFoam/Make/linux64GccDPInt32Opt

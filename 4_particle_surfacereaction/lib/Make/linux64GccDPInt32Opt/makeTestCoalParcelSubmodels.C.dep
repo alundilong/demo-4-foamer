@@ -1116,7 +1116,7 @@ makeTestCoalParcelSurfaceReactionModels.H \
 TestCOxidationDiffusionLimitedRate.H \
 TestCOxidationDiffusionLimitedRate.C \
 CoNiORedoxDiffusionLimitedRate.H \
-ReactionODE.H \
+CoNiORedoxODE.H \
 $(WM_PROJECT_DIR)/src/ODE/lnInclude/ODESystem.H \
 $(WM_PROJECT_DIR)/src/ODE/lnInclude/ODESolver.H \
 $(WM_PROJECT_DIR)/src/ODE/lnInclude/ODESolverI.H \

@@ -28,7 +28,7 @@ License
 
 #include "CoNiORedoxDiffusionLimitedRate.H"
 #include "mathematicalConstants.H"
-#include "ReactionODE.H"
+#include "CoNiORedoxODE.H"
 
 using namespace Foam::constant;
 
@@ -42,14 +42,14 @@ Foam::CoNiORedoxDiffusionLimitedRate<CloudType>::CoNiORedoxDiffusionLimitedRate
 )
 :
     SurfaceReactionModel<CloudType>(dict, owner, typeName),
-    odeOxi_(ReactionODE(dict.subDict("OxidationODECoeff"))),
-    odeSolverOxi_(ODESolver::New(odeOxi_, dict.subDict("OxidationODECoeff"))),
-    odeRed_(ReactionODE(dict.subDict("ReductionODECoeff"))),
-    odeSolverRed_(ODESolver::New(odeOxi_, dict.subDict("ReductionODECoeff"))),
+    odeOxi_(CoNiORedoxODE(this->coeffDict().subDict("OxidationODECoeff"))),
+    odeSolverOxi_(ODESolver::New(odeOxi_, this->coeffDict().subDict("OxidationODECoeff"))),
+    odeRed_(CoNiORedoxODE(this->coeffDict().subDict("ReductionODECoeff"))),
+    odeSolverRed_(ODESolver::New(odeOxi_, this->coeffDict().subDict("ReductionODECoeff"))),
     D_(this->coeffDict().getScalar("D")),
     CoNiOsLocalId_ (-1),
     Co3NiO4sLocalId_(-1),
-    O2GlobalId_(owner.composition().carrierId("O2")),
+    O2GlobalId_(-1),
     WCoNiOs_(0.0),
     WCo3NiO4s_(0.0),
     WO2_(0.0),
@@ -72,10 +72,13 @@ Foam::CoNiORedoxDiffusionLimitedRate<CloudType>::CoNiORedoxDiffusionLimitedRate
     Co3NiO4sLocalId_ = owner.composition().localId(idSolid, "Co3NiO4");
 
     // Set local copies of thermo properties
-    WO2_ = owner.thermo().carrier().W(O2GlobalId_);
+    O2GlobalId_ = owner.composition().carrierId("O2");
 
-    HcCoNiO_ = owner.thermo().carrier().Hc(CoNiOsLocalId_);
-    HcCo3NiO4_ = owner.thermo().carrier().Hc(Co3NiO4sLocalId_);
+    WCoNiOs_ = owner.thermo().solids().properties()[CoNiOsLocalId_].W();
+    WCo3NiO4s_ = owner.thermo().solids().properties()[Co3NiO4sLocalId_].W();
+    WO2_ = owner.thermo().carrier().W(O2GlobalId_);
+    HcCoNiO_ = owner.thermo().solids().properties()[CoNiOsLocalId_].Hf();
+    HcCo3NiO4_ = owner.thermo().solids().properties()[Co3NiO4sLocalId_].Hf();
 
     const scalar YCoNiOloc = owner.composition().Y0(idSolid)[CoNiOsLocalId_];
     const scalar YCo3NiO4loc = owner.composition().Y0(idSolid)[Co3NiO4sLocalId_];
@@ -146,7 +149,7 @@ Foam::scalar Foam::CoNiORedoxDiffusionLimitedRate<CloudType>::calculate
 ) const
 {
     scalar heatChange = 0.0;
-    if (T < 800) {
+    if (T < 850) {
         // Fraction of remaining combustible material
         const label idSolid = CloudType::parcelType::SLD;
         // calculate the fraction of oxidatable solid
@@ -165,7 +168,7 @@ Foam::scalar Foam::CoNiORedoxDiffusionLimitedRate<CloudType>::calculate
         const scalar YO2 = thermo.carrier().Y(O2GlobalId_)[celli];
 
         // Change in C mass [kg]
-        scalar Sb = 0.5;
+        scalar Sb = 1.0/6.0;
         scalar dmCoNiO = 4.0*mathematical::pi*d*D_*YO2*Tc*rhoc/(Sb*(T + Tc))*dt;
 
         // Limit mass transfer by availability of CoNiO
@@ -178,8 +181,8 @@ Foam::scalar Foam::CoNiORedoxDiffusionLimitedRate<CloudType>::calculate
         const scalar dmCo3NiO4 = dmCoNiO + dmO2;
 
         // Update local particle CoNiO and Co3NiO4 mass
-        dMassSolid[CoNiOsLocalId_] -= dmCoNiO;
-        dMassSolid[Co3NiO4sLocalId_] += dmCo3NiO4;
+        dMassSolid[CoNiOsLocalId_] += dmCoNiO;
+        dMassSolid[Co3NiO4sLocalId_] -= dmCo3NiO4;
 
         // Update carrier O2 mass
         dMassSRCarrier[O2GlobalId_] -= dmO2;
@@ -210,17 +213,18 @@ Foam::scalar Foam::CoNiORedoxDiffusionLimitedRate<CloudType>::calculate
 
         // Change in C mass [kg]
         scalar Sb = 1.0;
-        scalar dmCo3NiO4 = 4.0*mathematical::pi*d*Tc*rhoc/(Sb*(T + Tc))*dt;
+        scalar dmCo3NiO4 = 4.0*mathematical::pi*d*D_*Tc*rhoc/(Sb*(T + Tc))*dt;
 
         // Limit mass transfer by availability of Co3NiO4
         dmCo3NiO4 = min(mass*fComb, dmCo3NiO4);
 
         // Mass of newly created CoNiO [kg]
-        const scalar dmCoNiO = dmCo3NiO4/WCo3NiO4s_*WCoNiOs_;
+        Sb = 3.0;
+        const scalar dmCoNiO = Sb*dmCo3NiO4/WCo3NiO4s_*WCoNiOs_;
 
         // Update local particle CoNiO and Co3NiO4 mass
-        dMassSolid[CoNiOsLocalId_] += dmCoNiO;
-        dMassSolid[Co3NiO4sLocalId_] -= dmCo3NiO4;
+        dMassSolid[Co3NiO4sLocalId_] += dmCo3NiO4;
+        dMassSolid[CoNiOsLocalId_] -= dmCoNiO;
 
         // Change in O2 mass [kg]
         Sb = 0.5;

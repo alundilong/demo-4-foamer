@@ -39,14 +39,14 @@ using namespace Foam;
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-class ReactionODE
+class CoNiORedoxODE
 :
     public ODESystem
 {
 
 public:
 
-    ReactionODE(const dictionary& dict);
+    CoNiORedoxODE(const dictionary& dict);
 
     label nEqns() const;
 

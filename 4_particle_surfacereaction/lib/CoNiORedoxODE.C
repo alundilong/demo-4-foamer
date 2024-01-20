@@ -25,13 +25,13 @@ Description
 
 \*---------------------------------------------------------------------------*/
 
-#include "ReactionODE.H"
+#include "CoNiORedoxODE.H"
 #include "physicoChemicalConstants.H"
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-ReactionODE::ReactionODE(const dictionary& dict)
+CoNiORedoxODE::CoNiORedoxODE(const dictionary& dict)
     :
     A_(readScalar(dict.lookup("A"))),
     Ea_(readScalar(dict.lookup("Ea"))),
@@ -44,58 +44,58 @@ ReactionODE::ReactionODE(const dictionary& dict)
 {
 }
 
-label ReactionODE::nEqns() const
+label CoNiORedoxODE::nEqns() const
 {
     return 1;
 }
 
-label ReactionODE::nSteps() const
+label CoNiORedoxODE::nSteps() const
 {
     return nSteps_;
 }
 
-scalar ReactionODE::tolerance() const
+scalar CoNiORedoxODE::tolerance() const
 {
     return tolerance_;
 }
 
-scalar ReactionODE::A() const
+scalar CoNiORedoxODE::A() const
 {
     return A_;
 }
 
-scalar ReactionODE::Ea() const
+scalar CoNiORedoxODE::Ea() const
 {
     return Ea_;
 }
 
-scalar ReactionODE::m() const
+scalar CoNiORedoxODE::m() const
 {
     return m_;
 }
 
-scalar ReactionODE::n() const
+scalar CoNiORedoxODE::n() const
 {
     return n_;
 }
 
-scalar ReactionODE::p() const
+scalar CoNiORedoxODE::p() const
 {
     return p_;
 }
 
-scalar ReactionODE::T() const
+scalar CoNiORedoxODE::T() const
 {
     return T_;
 }
 
-void ReactionODE::setTemperature(const scalar T) 
+void CoNiORedoxODE::setTemperature(const scalar T) 
 {
     T_ = T;
 }
 
 
-void ReactionODE::derivatives
+void CoNiORedoxODE::derivatives
     (
         const scalar x,
         const scalarField& y,
@@ -108,7 +108,7 @@ void ReactionODE::derivatives
     dydx[0] = A_*Foam::exp(-Ea_/R/T_)*f_alpha;
 }
 
-void ReactionODE::jacobian
+void CoNiORedoxODE::jacobian
     (
         const scalar x,
         const scalarField& y,
